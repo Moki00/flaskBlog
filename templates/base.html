@@ -21,6 +21,14 @@
       <a class="navbar-brand" href="{{ url_for('index')}}">FlaskBlog</a>
       <!-- ... (navbar code) ... -->
     </nav>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url_for('create')}}">New Post</a>
+    </li>
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
     <div class="container">{% block content %} {% endblock %}</div>
     <!-- ... (Bootstrap JavaScript links) ... -->
   </body>
