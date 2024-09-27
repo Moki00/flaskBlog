@@ -11,8 +11,14 @@
   <body>
     {% extends 'base.html' %} {% block content %}
     <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
-    <h1>Welcome to FlaskBlog222</h1>
-    {% endblock %}
+    <!-- Jinja to iterate over each post in the list. -->
+    {% for post in posts %}
+    <a href="#">
+      <h2>{{ post['title'] }}</h2>
+    </a>
+    <span class="badge badge-primary">{{ post['created'] }}</span>
+    <hr />
+    {% endfor %} {% endblock %}
     <p>p-test</p>
     floating test
   </body>
