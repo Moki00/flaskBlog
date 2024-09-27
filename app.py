@@ -23,7 +23,7 @@ def post(post_id):
     # render the post page in the html
     return render_template('post.html', post=post)
 
-# create posts
+# Create Posts
 @app.route('/create', methods=('GET', 'POST'))
 def create():
     # if user clicks Submit
@@ -64,16 +64,26 @@ def edit(id):
             return redirect(url_for('index'))
     return render_template('edit.html', post=post)
 
-# connect to Database
+@app.route('/<int:id>/delete', methods=('POST',))
+def delete(id):
+    post = get_post(id)
+    conn = get_db_connection()
+    conn.execute('DELETE FROM posts WHERE id = ?', (id,))
+    conn.commit()
+    conn.close()
+    flash('"{}" was successfully deleted.'.format(post['title']))
+    return redirect(url_for('index'))
+
+# Connect to Database
 def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     return conn
 
+# Get Post
 def get_post(post_id):
-    # open the connection to database
     conn = get_db_connection()
-    # select the post based on its ID. ? holds the id variable
+    # SELECT the post based on its ID
     post = conn.execute('SELECT * FROM posts WHERE id = ?', (post_id,)).fetchone()
     conn.close()
     # Do we have the post or 404?
