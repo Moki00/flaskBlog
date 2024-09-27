@@ -3,8 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <title>FlaskBlog</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'css/style.css') }}"
+    />
   </head>
   <body>
-    <h1>Welcome to FlaskBlog</h1>
+    {% extends 'base.html' %} {% block content %}
+    <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
+    <h1>Welcome to FlaskBlog222</h1>
+    {% endblock %}
+    <p>p-test</p>
+    floating test
   </body>
 </html>
