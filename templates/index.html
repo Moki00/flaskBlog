@@ -13,13 +13,12 @@
     <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
     <!-- Jinja to iterate over each post in the list. -->
     {% for post in posts %}
-    <a href="#">
+    <a href="{{ url_for('post', post_id=post['id']) }}">
       <h2>{{ post['title'] }}</h2>
     </a>
     <span class="badge badge-primary">{{ post['created'] }}</span>
     <hr />
     {% endfor %} {% endblock %}
-    <p>p-test</p>
-    floating test
+    <p>text cannot be seen here</p>
   </body>
 </html>
